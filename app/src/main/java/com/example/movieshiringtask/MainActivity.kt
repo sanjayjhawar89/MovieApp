@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieshiringtask.PresentationLogic.MainActivityVIewModel
+import com.example.movieshiringtask.PresentationLogic.MoviesListAdapter
 import com.example.movieshiringtask.businesslogic.Search
 import com.example.movieshiringtask.businesslogic.Status
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,44 +21,49 @@ class MainActivity : AppCompatActivity() {
 
     private val mainActivityVIewModel : MainActivityVIewModel by viewModel()
 
+    private lateinit var moviesListAdapter: MoviesListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
         supportActionBar?.apply {
             title = ""
         }
+        initAdapter()
         observeData()
+    }
+
+    private fun initAdapter() {
+        movieList.apply {
+            layoutManager = GridLayoutManager(context, 2)
+            setHasFixedSize(true)
+        }
+        moviesListAdapter = MoviesListAdapter(this)
+        movieList.adapter = moviesListAdapter
+        mainActivityVIewModel.movieList.observe(this, Observer<PagedList<Search>> {
+            moviesListAdapter.submitList(it)
+        })
     }
 
     private fun observeData() {
         mainActivityVIewModel.status.observe(this, Observer<Status> {
             when(it){
                 Status.Loading -> {
-                    Timber.i("Sanju: Api statis is loading")
                     progress_circular.visibility = View.VISIBLE
-
+                    progress_circular.visibility = View.GONE
                 }
                 Status.Error -> {
-                    Timber.i("Sanju: Error statis is Error")
                     progress_circular.visibility = View.GONE
                     errorGroup.visibility = View.VISIBLE
 
                 }
                 Status.Done -> {
-                    Timber.i("Sanju: Error statis is Done")
                     errorGroup.visibility = View.GONE
                     progress_circular.visibility = View.GONE
                 }
             }
         })
-
-
-        mainActivityVIewModel.movieList.observe(this, Observer<PagedList<Search>> {
-            Log.d("Sanju" , "List size is  " + it.size)
-        })
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

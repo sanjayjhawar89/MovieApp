@@ -73,6 +73,9 @@ dependencies {
     implementation 'org.koin:koin-android:2.1.6'
     implementation 'org.koin:koin-android-viewmodel:2.1.6'
 
+    //Image
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     //Room
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
