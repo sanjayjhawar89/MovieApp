@@ -2,12 +2,13 @@ package com.example.movieshiringtask.businesslogic
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
+import com.example.movieshiringtask.businesslogic.DataSource as customDataSource
 
 
-class DataSourceFactory constructor(private val dataSource: com.example.movieshiringtask.businesslogic.DataSource) :
+class DataSourceFactory constructor(private val dataSource: customDataSource) :
     DataSource.Factory<Int, Search>() {
 
-    private val movieDataSourceLiveData = MutableLiveData<com.example.movieshiringtask.businesslogic.DataSource>()
+    private val movieDataSourceLiveData = MutableLiveData<customDataSource>()
 
     fun setMovieType(movieType: String) {
         dataSource.setQuery(movieType)
@@ -23,7 +24,7 @@ class DataSourceFactory constructor(private val dataSource: com.example.movieshi
     }
 
 
-    fun getDataFactoryLiveData(): MutableLiveData<com.example.movieshiringtask.businesslogic.DataSource> {
+    fun getDataFactoryLiveData(): MutableLiveData<customDataSource> {
         return movieDataSourceLiveData;
     }
 }

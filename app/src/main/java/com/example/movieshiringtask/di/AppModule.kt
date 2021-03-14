@@ -1,10 +1,9 @@
 package com.example.movieshiringtask.di
 
-import com.example.movieshiringtask.businesslogic.ApiService
-import com.example.movieshiringtask.businesslogic.DataSource
-import com.example.movieshiringtask.businesslogic.DataSourceFactory
-import com.example.movieshiringtask.businesslogic.MainRepository
+import androidx.room.Room
+import com.example.movieshiringtask.businesslogic.*
 import io.reactivex.disposables.CompositeDisposable
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val appModule = module {
@@ -26,8 +25,19 @@ val appModule = module {
 
     single<MainRepository> {
         MainRepository(
-            get<DataSourceFactory>()
+            get<DataSourceFactory>(),
+            get<RoomDao>()
         )
+    }
+
+    single<RoomDB> {
+        Room.databaseBuilder(androidContext(), RoomDB::class.java, DATABASE_NAME)
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    single<RoomDao> {
+        get<RoomDB>().roomDao()
     }
 
 }

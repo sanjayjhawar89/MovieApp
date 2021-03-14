@@ -8,7 +8,8 @@ import androidx.paging.PagedList
 const val PAGED_LIST_PAGE_SIZE = 20
 
 class MainRepository constructor(
-    private val dataSourceFactory: DataSourceFactory
+    private val dataSourceFactory: DataSourceFactory,
+    private val roomDao: RoomDao
 ) {
 
     /**
@@ -37,7 +38,7 @@ class MainRepository constructor(
         return LivePagedListBuilder<Int, Search>(dataSourceFactory, config).build()
     }
 
-    fun clear() {
+    private fun clear() {
         dataSourceFactory.clear()
     }
 
