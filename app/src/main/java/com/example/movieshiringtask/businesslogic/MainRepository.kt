@@ -41,4 +41,8 @@ class MainRepository constructor(
         dataSourceFactory.clear()
     }
 
+    fun retry() {
+        dataSourceFactory.getDataFactoryLiveData().value?.retry()
+    }
+
 }

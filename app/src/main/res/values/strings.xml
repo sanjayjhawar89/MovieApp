@@ -2,4 +2,6 @@
     <string name="app_name">MoviesHiringTask</string>
 
     <string name="error_message">Something went wrong.Please try again!</string>
+
+    <string name="error_message1">Something went wrong !! Tap to retry.</string>
 </resources>

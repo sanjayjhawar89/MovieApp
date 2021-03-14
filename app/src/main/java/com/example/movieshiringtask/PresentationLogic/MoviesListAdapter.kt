@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_movie_item.view.*
 
 
-class MoviesListAdapter(private val context: Context) :
+class MoviesListAdapter() :
     PagedListAdapter<Search, MoviesListAdapter.MovieViewHolder>(DIFF_UTIL) {
 
     private val picasso = Picasso.get();

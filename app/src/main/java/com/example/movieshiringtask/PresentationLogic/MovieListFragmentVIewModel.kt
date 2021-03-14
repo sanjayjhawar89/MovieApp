@@ -8,7 +8,7 @@ import androidx.paging.PagedList
 import com.example.movieshiringtask.businesslogic.MainRepository
 import com.example.movieshiringtask.businesslogic.Search
 
-class MainActivityVIewModel constructor(
+class MovieListFragmentVIewModel constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
 
@@ -31,5 +31,9 @@ class MainActivityVIewModel constructor(
         if (query != null && query.isNotEmpty()) {
             fetchData.value = query
         }
+    }
+
+    fun retry() {
+        mainRepository.retry()
     }
 }
