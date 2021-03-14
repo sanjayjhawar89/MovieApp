@@ -26,8 +26,7 @@ val appModule = module {
 
     single<MainRepository> {
         MainRepository(
-            get<DataSourceFactory>(),
-            get<CompositeDisposable>()
+            get<DataSourceFactory>()
         )
     }
 

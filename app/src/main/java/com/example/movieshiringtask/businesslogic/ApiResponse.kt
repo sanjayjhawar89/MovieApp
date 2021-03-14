@@ -6,9 +6,10 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class ApiResponse(
-    @field:Json(name = "Response") val response: Boolean,
-    val items: List<Search>,
-    val totalResults: Int
+    @field:Json(name = "Response") val response: String,
+    @field:Json(name = "Search")val items: List<Search>,
+    val totalResults: String?,
+    @field:Json(name = "Error")val errorResponse: String?
 )
 
 

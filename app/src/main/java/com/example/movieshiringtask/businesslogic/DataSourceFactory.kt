@@ -13,7 +13,6 @@ class DataSourceFactory constructor(private val dataSource: com.example.movieshi
         dataSource.setQuery(movieType)
     }
 
-
     fun clear() {
         dataSource.clear()
     }

@@ -26,11 +26,9 @@ val networkModule = module {
 
 private fun createOkHttpClient(): OkHttpClient {
     val clientBuilder = OkHttpClient.Builder()
-    if (BuildConfig.DEBUG) {
-        val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
-        clientBuilder.addInterceptor(logging)
-    }
+    val logging = HttpLoggingInterceptor()
+    logging.level = HttpLoggingInterceptor.Level.BODY
+    clientBuilder.addInterceptor(logging)
     return clientBuilder.build()
 }
 

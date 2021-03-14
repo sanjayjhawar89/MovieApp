@@ -36,7 +36,7 @@ class DataSource constructor(private val apiService: ApiService, private val com
     private var retryCompletable: Completable? = null
 
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Search>) {
+    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Search?>) {
         compositeDisposable.add(
             apiService.getRequest(query, page)
                 .subscribeOn(Schedulers.io())
@@ -54,7 +54,7 @@ class DataSource constructor(private val apiService: ApiService, private val com
         )
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Search>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Search?>) {
         page = params.key
         compositeDisposable.add(
             apiService.getRequest(query, page)

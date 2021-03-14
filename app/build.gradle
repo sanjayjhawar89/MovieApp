@@ -24,6 +24,13 @@ android {
     }
 
     dataBinding.enabled = true
+
+    //Required for compiling lambdas
+    compileOptions {
+        incremental false   // To disable instant run, Instant run wont work properly for Java-8.
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {

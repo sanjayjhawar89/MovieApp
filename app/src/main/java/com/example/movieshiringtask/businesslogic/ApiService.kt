@@ -7,10 +7,10 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("")
+    @GET(".")
     fun getRequest(
-        @Query("c&s") query: String,
+        @Query("s") query: String,
         @Query("page") page: Int,
-        @Query("apiKey") apiKey: String = "ab6f491"
+        @Query("apiKey") apiKey: String = "ab6f491c"
     ): Single<ApiResponse>
 }
